@@ -7,7 +7,7 @@
 #include <gl/glu.h>
 
 #include "GLLayer3D.h"
-
+#include "GLLayer2D.h"
 class CMooNView : public CView
 {
 protected: // create from serialization only

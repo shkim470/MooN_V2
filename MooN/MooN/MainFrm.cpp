@@ -21,6 +21,7 @@ const UINT uiLastUserToolBarId = uiFirstUserToolBarId + iMaxUserToolbars - 1;
 
 BEGIN_MESSAGE_MAP(CMainFrame, CFrameWndEx)
 	ON_WM_CREATE()
+	ON_COMMAND(ID_FILE_OPEN_FOLDER, &CMainFrame::OnFileOpenFolder)
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -122,3 +123,19 @@ BOOL CMainFrame::LoadFrame(UINT nIDResource, DWORD dwDefaultStyle, CWnd* pParent
 	return TRUE;
 }
 
+
+
+void CMainFrame::OnFileOpenFolder()
+{
+	// TODO: Add your command handler code here
+	CString strInitPath = _T("C:\\");
+
+	// 폴더 선택 다이얼로그
+	CFolderPickerDialog Picker(strInitPath, OFN_FILEMUSTEXIST, NULL, 0);
+	if (Picker.DoModal() == IDOK)
+	{
+		// 선택된 폴더 경로얻음
+		CString strFolderPath = Picker.GetPathName();
+		// 경로(strFolderPath)를 이용하여 이후작업 추가
+	}
+}
