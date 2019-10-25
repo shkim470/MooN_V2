@@ -3,6 +3,8 @@
 //
 
 #pragma once
+#include "FileView.h"
+#include "OutputWnd.h"
 
 class CMainFrame : public CFrameWndEx
 {
@@ -33,7 +35,12 @@ public:
 protected:  // control bar embedded members
 	CMFCMenuBar       m_wndMenuBar;
 	CMFCStatusBar     m_wndStatusBar;
+	CFileView         m_wndFileView;
+	COutputWnd        m_wndOutput;
 
+
+	void InitMooN();
+	void CloseMooN();
 
 // Generated message map functions
 protected:

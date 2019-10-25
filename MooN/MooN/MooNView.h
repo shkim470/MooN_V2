@@ -16,7 +16,7 @@ protected: // create from serialization only
 
 // Attributes
 public:
-	CMooNDoc* GetDocument() const;
+//	CMooNDoc* GetDocument() const;
 
 // Operations
 public:

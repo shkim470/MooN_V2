@@ -58,10 +58,10 @@ BOOL CMooNView::PreCreateWindow(CREATESTRUCT& cs)
 
 void CMooNView::OnDraw(CDC* /*pDC*/)
 {
-	CMooNDoc* pDoc = GetDocument();
-	ASSERT_VALID(pDoc);
-	if (!pDoc)
-		return;
+	//CMooNDoc* pDoc = GetDocument();
+	//ASSERT_VALID(pDoc);
+	//if (!pDoc)
+	//	return;
 
 	// TODO: add draw code for native data here
 	wglMakeCurrent(m_hDC, m_hRC);
@@ -124,11 +124,11 @@ void CMooNView::Dump(CDumpContext& dc) const
 	CView::Dump(dc);
 }
 
-CMooNDoc* CMooNView::GetDocument() const // non-debug version is inline
-{
-	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CMooNDoc)));
-	return (CMooNDoc*)m_pDocument;
-}
+//CMooNDoc* CMooNView::GetDocument() const // non-debug version is inline
+//{
+//	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CMooNDoc)));
+//	return (CMooNDoc*)m_pDocument;
+//}
 #endif //_DEBUG
 
 
