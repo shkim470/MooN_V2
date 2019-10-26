@@ -34,22 +34,30 @@ int COutputWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	CRect rectDummy;
 	rectDummy.SetRectEmpty();
-
+	   	  
 	// Create tabs window:
-	if (!m_wndTabs.Create(CMFCTabCtrl::STYLE_FLAT, rectDummy, this, 1))
-	{
-		TRACE0("Failed to create output tab window\n");
-		return -1;      // fail to create
-	}
+	//if (!m_wndTabs.Create(CMFCTabCtrl::STYLE_FLAT, rectDummy, this, 1))
+	//{
+	//	TRACE0("Failed to create output tab window\n");
+	//	return -1;      // fail to create
+	//}
 
 	// Create output panes:
 	const DWORD dwStyle = LBS_NOINTEGRALHEIGHT | WS_CHILD | WS_VISIBLE | WS_HSCROLL | WS_VSCROLL;
 
-	if (!m_wndOutputDebug.Create(dwStyle, rectDummy, &m_wndTabs, 2))
+	//if (!m_wndOutputDebug.Create(dwStyle, rectDummy, &m_wndTabs, 2))
+	//{
+	//	TRACE0("Failed to create output windows\n");
+	//	return -1;      // fail to create
+	//}
+
+
+	if (!m_wndOutputDebug.Create(dwStyle, rectDummy, this, 2))
 	{
 		TRACE0("Failed to create output windows\n");
 		return -1;      // fail to create
 	}
+
 
 	UpdateFonts();
 
@@ -57,7 +65,7 @@ int COutputWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 //	BOOL bNameValid;
 
 	// Attach list windows to tab:
-	m_wndTabs.AddTab(&m_wndOutputDebug, strTabName, (UINT)1);
+//	m_wndTabs.AddTab(&m_wndOutputDebug, strTabName, (UINT)1);
 
 	// Fill output tabs with some dummy text (nothing magic here)
 	FillDebugWindow();
@@ -70,7 +78,8 @@ void COutputWnd::OnSize(UINT nType, int cx, int cy)
 	CDockablePane::OnSize(nType, cx, cy);
 
 	// Tab control should cover the whole client area:
-	m_wndTabs.SetWindowPos (NULL, -1, -1, cx, cy, SWP_NOMOVE | SWP_NOACTIVATE | SWP_NOZORDER);
+//	m_wndTabs.SetWindowPos (NULL, -1, -1, cx, cy, SWP_NOMOVE | SWP_NOACTIVATE | SWP_NOZORDER);
+	m_wndOutputDebug.SetWindowPos(NULL, -1, -1, cx, cy, SWP_NOMOVE | SWP_NOACTIVATE | SWP_NOZORDER);
 }
 
 void COutputWnd::AdjustHorzScroll(CListBox& wndListBox)

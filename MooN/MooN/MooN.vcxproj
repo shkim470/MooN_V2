@@ -191,13 +191,18 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CFormDLUI.h" />
     <ClInclude Include="CGLButton.h" />
     <ClInclude Include="CGLCVCommon.h" />
+    <ClInclude Include="CMNData.h" />
     <ClInclude Include="CMNFileManager.h" />
+    <ClInclude Include="CMNObject.h" />
+    <ClInclude Include="CMNObjectImage.h" />
     <ClInclude Include="data_type.h" />
     <ClInclude Include="DragDropTreeCtrl.h" />
     <ClInclude Include="DragEventListener.h" />
     <ClInclude Include="FileView.h" />
+    <ClInclude Include="FormUIView.h" />
     <ClInclude Include="GLCamera.h" />
     <ClInclude Include="GLLayer.h" />
     <ClInclude Include="GLLayer2D.h" />
@@ -213,11 +218,16 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CFormDLUI.cpp" />
     <ClCompile Include="CGLButton.cpp" />
     <ClCompile Include="CGLCVCommon.cpp" />
+    <ClCompile Include="CMNData.cpp" />
     <ClCompile Include="CMNFileManager.cpp" />
+    <ClCompile Include="CMNObject.cpp" />
+    <ClCompile Include="CMNObjectImage.cpp" />
     <ClCompile Include="DragDropTreeCtrl.cpp" />
     <ClCompile Include="FileView.cpp" />
+    <ClCompile Include="FormUIView.cpp" />
     <ClCompile Include="GLCamera.cpp" />
     <ClCompile Include="GLLayer.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>

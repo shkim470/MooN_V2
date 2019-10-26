@@ -1,6 +1,5 @@
 
 #pragma once
-
 /////////////////////////////////////////////////////////////////////////////
 // COutputList window
 
@@ -35,7 +34,7 @@ public:
 
 // Attributes
 protected:
-	CMFCTabCtrl	m_wndTabs;
+//	CMFCTabCtrl	m_wndTabs;
 	COutputList m_wndOutputDebug;
 
 

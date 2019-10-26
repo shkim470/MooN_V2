@@ -98,6 +98,8 @@ protected:
 	afx_msg void OnClick(NMHDR* pNMHDR, LRESULT* pResult);
 	//}}AFX_MSG
 
+	bool IsSupportFormat(CString strPath);
+
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnNMDblclk(NMHDR *pNMHDR, LRESULT *pResult);

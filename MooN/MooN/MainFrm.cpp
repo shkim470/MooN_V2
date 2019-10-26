@@ -64,7 +64,13 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("Failed to create File View window\n");
 		return FALSE; // failed to create
 	}
-	if (!m_wndOutput.Create(L"Output", this, CRect(0, 0, 200, 200), TRUE, 0x02, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_BOTTOM))
+	if (!m_wndOutput.Create(L"   Output   ", this, CRect(0, 0, 200, 200), TRUE, 0x02, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_BOTTOM))
+	{
+		TRACE0("Failed to create Output window\n");
+		return FALSE; // failed to create
+	}
+
+	if (!m_wndFromUI.Create(L"   Setting   ", this, CRect(0, 0, 200, 200), TRUE, 0x03, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_BOTTOM))
 	{
 		TRACE0("Failed to create Output window\n");
 		return FALSE; // failed to create
@@ -76,6 +82,9 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndFileView.RecalcLayout();
 	m_wndOutput.SetControlBarStyle(dwStyle);
 	m_wndOutput.RecalcLayout();
+
+	m_wndFromUI.SetControlBarStyle(dwStyle);
+	m_wndFromUI.RecalcLayout();
 
 //	m_wndMenuBar.SetPaneStyle(m_wndMenuBar.GetPaneStyle() | CBRS_SIZE_DYNAMIC | CBRS_TOOLTIPS | CBRS_FLYBY);
 
@@ -95,13 +104,17 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndMenuBar.EnableDocking(CBRS_ALIGN_ANY);
 	m_wndFileView.EnableDocking(CBRS_ALIGN_ANY);
 	m_wndOutput.EnableDocking(CBRS_ALIGN_ANY);
+	m_wndFromUI.EnableDocking(CBRS_ALIGN_ANY);
 	
-
 	EnableDocking(CBRS_ALIGN_ANY);
 
 	DockPane(&m_wndFileView);
+
 	DockPane(&m_wndMenuBar);
 	DockPane(&m_wndOutput);
+	CDockablePane* pTabbedBar = NULL;	
+	m_wndFromUI.AttachToTabWnd(&m_wndOutput, DM_SHOW, FALSE, &pTabbedBar);
+
 
 
 //	CWaitCursor wait;

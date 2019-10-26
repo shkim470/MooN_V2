@@ -3,14 +3,7 @@
 #include "MNSingletone.h"
 
 #include "data_type.h"
-#include "opencv/cv.h"
-#include "opencv2/core/core.hpp"
-#include "opencv2/highgui/highgui.hpp"
-#include "opencv2/imgproc/imgproc.hpp"
-#include "opencv2/photo.hpp"
 
-#include <gl/gl.h>
-#include <gl/glu.h>
 
 
 class CGLCVCommon
@@ -25,4 +18,4 @@ public:
 
 };
 
-typedef CMNSingleton<CGLCVCommon> SINGLETON_CVMng;
+typedef CMNSingleton<CGLCVCommon> SINGLETON_GLCV;

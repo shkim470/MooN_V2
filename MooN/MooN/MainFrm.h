@@ -5,6 +5,7 @@
 #pragma once
 #include "FileView.h"
 #include "OutputWnd.h"
+#include "FormUIView.h"
 
 class CMainFrame : public CFrameWndEx
 {
@@ -37,6 +38,7 @@ protected:  // control bar embedded members
 	CMFCStatusBar     m_wndStatusBar;
 	CFileView         m_wndFileView;
 	COutputWnd        m_wndOutput;
+	CFormUIView		  m_wndFromUI;
 
 
 	void InitMooN();

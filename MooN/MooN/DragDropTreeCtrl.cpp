@@ -3,7 +3,9 @@
 #include "DragDropTreeCtrl.h"
 #include "DragEventListener.h"
 #include "resource.h"
-#include "MooNview.h"
+//#include "MooNview.h"
+#include "CMNData.h"
+#include "CMNFileManager.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -94,6 +96,23 @@ void CDragDropTreeCtrl::OnMouseMove(UINT nFlags, CPoint point)
 //		m_vEventListener[nEventListenerIdx]->OnDragMove(pt);
 //	}
 //}
+
+
+bool CDragDropTreeCtrl::IsSupportFormat(CString strPath)
+{
+	CString str = PathFindExtension(strPath);
+	// Image File Filter ===============//
+	if ((str == L".pdf") || (str == L".PDF") ||
+		(str == L".jpg") || (str == L".JPG") ||
+		(str == L".bmp") || (str == L".BMP") ||
+		(str == L".png") || (str == L".PNG") ||
+		(str == L".tiff") || (str == L".TIFF") || (str == L".TIF") || (str == L".tif"))
+	{
+		return true;
+	}
+	return false;
+}
+
 void CDragDropTreeCtrl::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	if ((m_bDragging && m_pImageList != NULL) && (point.x > m_nWidth)){
@@ -106,8 +125,38 @@ void CDragDropTreeCtrl::OnLButtonUp(UINT nFlags, CPoint point)
 		//for (unsigned int i = 0; i < m_vSelItem.size(); i++){
 		//	pView->SetTreeDragItem(m_vSelItem[i], this);			
 		//}
-
 //		pView->SetTreeDragItem(m_vSelItem, this);
+
+
+
+		for (unsigned int i = 0; i < m_vSelItem.size(); i++) {
+			//	pView->SetTreeDragItem(m_vSelItem[i], this);	
+			HTREEITEM hChildItem = GetChildItem(m_vSelItem[i]);
+			CString strName = GetItemText(m_vSelItem[i]);
+
+			if (hChildItem == NULL) {  // No Child!! File
+				if (IsSupportFormat(strName)) {
+					HTREEITEM pItem = GetParentItem(m_vSelItem[i]);
+					CString strPath = GetItemFullPath(m_vSelItem[i]);
+
+
+					//char* cfgPath = new char[256];
+					//memset(cfgPath, 0x00, 256);
+					//SINGLETON_FileMng::GetInstance()->CStringToChar(strPath, cfgPath, 256);
+
+					CStringA tmpStr = CStringA(strPath);
+					const char* st = tmpStr;
+					char* _pt = const_cast<char*>(st);
+
+					SINGLETON_MNDATAMng::GetInstance()->AddImageData(_pt);
+
+
+					//delete[] cfgPath;
+				}
+			}
+
+		}
+
 	}
 
 

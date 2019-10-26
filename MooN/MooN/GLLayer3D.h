@@ -1,10 +1,10 @@
 #pragma once
 #include "GLLayer.h"
-class CGLLayer3D : public CGLLayer
+class CGLLayer3DForImg: public CGLLayer
 {
 public:
-	CGLLayer3D();
-	~CGLLayer3D();
+	CGLLayer3DForImg();
+	~CGLLayer3DForImg();
 
 	void Render();
 	void InitView(int _nWidth, int _nHeight);

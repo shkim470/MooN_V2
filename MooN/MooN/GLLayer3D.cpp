@@ -3,16 +3,16 @@
 
 
 
-CGLLayer3D::CGLLayer3D()
+CGLLayer3DForImg::CGLLayer3DForImg()
 {
 
 }
-CGLLayer3D::~CGLLayer3D()
+CGLLayer3DForImg::~CGLLayer3DForImg()
 {
 
 }
 
-void CGLLayer3D::Render()
+void CGLLayer3DForImg::Render()
 {
 	glLoadIdentity();
 	gluLookAt(0.0f, 0.0f, 1000.0f, 0.0f, 10.f, 0.0f, 0.0f, 1.0f, 0.0f);
@@ -26,7 +26,7 @@ void CGLLayer3D::Render()
 	glEnd();
 
 }
-void CGLLayer3D::InitView(int _nWidth, int _nHeight)
+void CGLLayer3DForImg::InitView(int _nWidth, int _nHeight)
 {
 	m_nWidth = _nWidth;
 	m_nHeight = _nHeight;

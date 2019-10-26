@@ -2,7 +2,7 @@
 #include "GLLayer.h"
 #include "CGLButton.h"
 
-class CGLLayer2D :public CGLLayer
+class CGLLayer2DForUI :public CGLLayer
 {
 };
 

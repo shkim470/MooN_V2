@@ -38,11 +38,13 @@ END_MESSAGE_MAP()
 CMooNView::CMooNView() noexcept
 {
 	// TODO: add construction code here
+	m_layer3DForImg = new CGLLayer3DForImg;
 
 }
 
 CMooNView::~CMooNView()
 {
+	delete m_layer3DForImg;
 }
 
 BOOL CMooNView::PreCreateWindow(CREATESTRUCT& cs)
@@ -160,7 +162,7 @@ void CMooNView::GLRenderScene()
 	glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	m_layer3D.Render();
+	m_layer3DForImg->Render();
 
 	glFlush();
 }

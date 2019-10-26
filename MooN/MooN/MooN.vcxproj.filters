@@ -78,6 +78,21 @@
     <ClInclude Include="CMNFileManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CMNData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CMNObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CMNObjectImage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CFormDLUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FormUIView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MooN.cpp">
@@ -123,6 +138,21 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CMNFileManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CMNData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CMNObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CMNObjectImage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CFormDLUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FormUIView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

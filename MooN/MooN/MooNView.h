@@ -25,7 +25,7 @@ private:
 
 	HGLRC m_hRC;
 	HDC   m_hDC;
-	CGLLayer3D m_layer3D;
+	CGLLayer* m_layer3DForImg;
 
 	// GL Operations
 	void GLResize(int cx, int cy);
