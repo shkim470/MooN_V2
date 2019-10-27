@@ -3,8 +3,6 @@
 //
 
 #pragma once
-#include <gl/gl.h>
-#include <gl/glu.h>
 
 #include "GLLayer3D.h"
 #include "GLLayer2D.h"
@@ -62,6 +60,7 @@ public:
 	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnSize(UINT nType, int cx, int cy);
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
 };
 
 #ifndef _DEBUG  // debug version in MooNView.cpp

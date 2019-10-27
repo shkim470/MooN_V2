@@ -12,6 +12,7 @@ public:
 
 	void AddObjects(CMNObject* pobj);
 	void AddImageData(char* _path);
+	std::map<unsigned long, CMNObject*>& GetObjectList() { return m_mapObect; }
 
 private:
 	unsigned int getHashCode(const char * szText);

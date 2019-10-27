@@ -11,6 +11,12 @@
 
 #include <gl/gl.h>
 #include <gl/glu.h>
+
+#define	MNOBJ_SIZE 100
+enum MNTIMER_EVTID { _MNRENDER=100};
+enum MNOBJECT_TYPE { _MNOBJ_IMG=0};
+
+
 struct POINT3D
 {
 	float x, y, z;

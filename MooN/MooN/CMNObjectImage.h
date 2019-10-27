@@ -8,7 +8,7 @@ public:
 
 
 	void Draw(void);
-	void SetImgObject(char* path, float objSize = _DEFAULT_IMGOBJ_SIZE);
+	void SetImgObject(char* path, unsigned long _uid, float objSize = _DEFAULT_IMGOBJ_SIZE);
 
 private:
 	cv::Mat m_srcImg;

@@ -9,11 +9,15 @@ CMNDataMng::CMNDataMng()
 
 CMNDataMng::~CMNDataMng()
 {
+	std::map<unsigned long, CMNObject*>::iterator iter = m_mapObect.begin();
+	for (; iter != m_mapObect.end(); iter++) {
+		delete iter->second;
+	}
+	m_mapObect.swap(std::map<unsigned long, CMNObject*>());
 }
 
 unsigned int CMNDataMng::getHashCode(const char * szText)
 {
-
 	unsigned int hash = 5381;
 	int c;
 
@@ -31,14 +35,14 @@ void CMNDataMng::AddObjects(CMNObject* pobj)
 			m_mapObect[pobj->m_objuid] = (CMNObjectImage*)pobj;
 		}
 	}
+	else {
+		delete pobj;
+	}
 }
 
 void CMNDataMng::AddImageData(char* _path)
 {
-	CMNObject* pObj = new CMNObjectImage;
-	
-	pObj->m_objuid = getHashCode(_path);
-	pObj->SetImgObject(_path);
-
-	   	 
+	CMNObject* pObj = new CMNObjectImage;	
+	pObj->SetImgObject(_path, getHashCode(_path), MNOBJ_SIZE);
+	AddObjects(pObj);	   	 
 }

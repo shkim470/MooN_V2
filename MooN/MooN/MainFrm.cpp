@@ -7,6 +7,8 @@
 
 #include "MainFrm.h"
 #include "CMNFileManager.h"
+#include "CMNData.h"
+#include "CGLCVCommon.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -44,6 +46,8 @@ CMainFrame::~CMainFrame()
 {
 	CloseMooN();
 	SINGLETON_FileMng::Destory();
+	SINGLETON_MNDATAMng::Destory();
+	SINGLETON_GLCV::Destory();
 }
 
 int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)

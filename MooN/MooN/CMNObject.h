@@ -10,7 +10,7 @@ public:
 
 	//Operations
 	virtual void Draw(void) = 0;
-	virtual void SetImgObject(char* path, float objSize = _DEFAULT_IMGOBJ_SIZE) = 0;
+	virtual void SetImgObject(char* path, unsigned long _uid, float objSize = _DEFAULT_IMGOBJ_SIZE) = 0;
 
 	int m_objType;
 	unsigned long m_objuid;

@@ -31,6 +31,7 @@ BEGIN_MESSAGE_MAP(CMooNView, CView)
 	ON_WM_ERASEBKGND()
 	ON_WM_CREATE()
 	ON_WM_SIZE()
+	ON_WM_TIMER()
 END_MESSAGE_MAP()
 
 // CMooNView construction/destruction
@@ -38,7 +39,8 @@ END_MESSAGE_MAP()
 CMooNView::CMooNView() noexcept
 {
 	// TODO: add construction code here
-	m_layer3DForImg = new CGLLayer3DForImg;
+	m_layer3DForImg = nullptr;
+//	m_layer3DForImg = new CGLLayer3DForImg;
 
 }
 
@@ -66,10 +68,9 @@ void CMooNView::OnDraw(CDC* /*pDC*/)
 	//	return;
 
 	// TODO: add draw code for native data here
-	wglMakeCurrent(m_hDC, m_hRC);
+
 	GLRenderScene();
-	SwapBuffers(m_hDC);
-	wglMakeCurrent(m_hDC, NULL);
+	
 }
 
 
@@ -159,16 +160,18 @@ void CMooNView::GLResize(int cx, int cy)
 }
 void CMooNView::GLRenderScene()
 {
+	wglMakeCurrent(m_hDC, m_hRC);
 	glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	m_layer3DForImg->Render();
+	if(m_layer3DForImg)
+		m_layer3DForImg->Render();
 
-	glFlush();
+	SwapBuffers(m_hDC);
+//	wglMakeCurrent(m_hDC, NULL);
 }
 BOOL CMooNView::GLInitialzation()
 {
-	int nPixelFormat;
 	m_hDC = ::GetDC(m_hWnd);
 
 	static PIXELFORMATDESCRIPTOR pfd =
@@ -190,12 +193,31 @@ BOOL CMooNView::GLInitialzation()
 	 0,
 	 0,0,0
 	};
-	nPixelFormat = ChoosePixelFormat(m_hDC, &pfd);
-	VERIFY(SetPixelFormat(m_hDC, nPixelFormat, &pfd));
-	m_hRC = wglCreateContext(m_hDC);
-	VERIFY(wglMakeCurrent(m_hDC, m_hRC));
-	wglMakeCurrent(NULL, NULL);
+	//nPixelFormat = ChoosePixelFormat(m_hDC, &pfd);
+	//VERIFY(SetPixelFormat(m_hDC, nPixelFormat, &pfd));
+	//m_hRC = wglCreateContext(m_hDC);
+	//VERIFY(wglMakeCurrent(m_hDC, m_hRC));
+	//wglMakeCurrent(NULL, NULL);
 
+	int pixelFormat;
+	if (!(pixelFormat = ChoosePixelFormat(m_hDC, &pfd)))
+		return FALSE;
+
+	// 컨텍스트에 대한 픽셀모드 설정
+	if (!(SetPixelFormat(m_hDC, pixelFormat, &pfd)))
+		return FALSE;
+
+	// 픽셀 포맷을 설정 
+	if (DescribePixelFormat(m_hDC, pixelFormat, sizeof(pfd), &pfd) == 0)
+		return FALSE;
+
+	// 렌더링 컨텍스트를 생성
+	if ((m_hRC = wglCreateContext(m_hDC)) == NULL)
+		return FALSE;
+
+	// 현재의 렌더링 컨텍스트를 만든다.
+	if (!(wglMakeCurrent(m_hDC, m_hRC)))
+		return FALSE;
 
 	glClearDepth(1.0f);								// Depth Buffer Setup
 	glEnable(GL_DEPTH_TEST);						// Enables Depth Testing
@@ -211,7 +233,9 @@ BOOL CMooNView::GLInitialzation()
 
 	glShadeModel(GL_SMOOTH);
 	glDisable(GL_LIGHTING);
+		
 
+	SetTimer(_MNRENDER, 50, NULL);
 	return TRUE;
 }
 
@@ -230,7 +254,7 @@ int CMooNView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	// TODO:  Add your specialized creation code here
 	GLInitialzation();
-
+	m_layer3DForImg = new CGLLayer3DForImg;
 	return 0;
 }
 
@@ -240,7 +264,19 @@ void CMooNView::OnSize(UINT nType, int cx, int cy)
 	CView::OnSize(nType, cx, cy);
 
 	// TODO: Add your message handler code here
-	VERIFY(wglMakeCurrent(m_hDC, m_hRC));
+	GLenum err = glGetError();
+
+	wglMakeCurrent(m_hDC, m_hRC);
 	GLResize(cx, cy);
-	VERIFY(wglMakeCurrent(NULL, NULL));
+	err = glGetError();
+}
+
+
+void CMooNView::OnTimer(UINT_PTR nIDEvent)
+{
+	// TODO: Add your message handler code here and/or call default
+	if (nIDEvent == _MNRENDER) {
+		GLRenderScene();
+	}
+	CView::OnTimer(nIDEvent);
 }
